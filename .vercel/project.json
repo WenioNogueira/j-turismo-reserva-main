@@ -1,0 +1,10 @@
+{
+  "orgId": "team_123",
+  "projectId": "prj_123",
+  "settings": {
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
+    "installCommand": "npm install",
+    "framework": "vite"
+  }
+}
