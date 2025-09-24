@@ -38,3 +38,6 @@ Thumbs.db
 # Documentation
 README.md
 LIMPEZA_REALIZADA.md
+
+# Source files (keep only built files)
+src/
