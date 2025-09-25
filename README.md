@@ -15,12 +15,14 @@ Sistema de reservas de passagens para J Turismo, desenvolvido com React, TypeScr
 
 ## Funcionalidades
 
-- ✅ Sistema de autenticação
+- ✅ Sistema de autenticação seguro
 - ✅ Reservas de passagens (Ida, Volta, Ida e Volta)
-- ✅ Dashboard administrativo
+- ✅ Dashboard administrativo completo
 - ✅ Histórico de reservas
 - ✅ Integração com WhatsApp
-- ✅ Interface responsiva
+- ✅ Interface responsiva para mobile
+- ✅ Sistema de protocolos automáticos
+- ✅ Validação de datas corrigida
 
 ## Como Executar
 
@@ -42,3 +44,11 @@ Sistema de reservas de passagens para J Turismo, desenvolvido com React, TypeScr
 ## Deploy
 
 O projeto está configurado para deploy no Vercel com as configurações necessárias.
+
+## Documentação
+
+- `ADMIN_USER_SETUP.md` - Como criar usuário administrador
+- `AUTH_TROUBLESHOOTING.md` - Solução de problemas de login
+- `DATE_FIX.md` - Correção de problemas de data
+- `MOBILE_DEBUG.md` - Debug para dispositivos móveis
+- `SECURITY_CHANGES.md` - Mudanças de segurança implementadas
