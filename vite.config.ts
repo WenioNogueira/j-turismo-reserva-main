@@ -13,14 +13,6 @@ export default defineConfig({
   build: {
     outDir: "dist",
     sourcemap: false,
-    target: 'es2015', // Better compatibility with older browsers
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-        // Ensure better compatibility
-        format: 'es',
-      },
-    },
   },
   base: "/",
   define: {
@@ -28,12 +20,5 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['@supabase/supabase-js']
-  },
-  // Add polyfills for better mobile compatibility
-  esbuild: {
-    target: 'es2015',
-    supported: {
-      'top-level-await': false
-    }
   }
 });
