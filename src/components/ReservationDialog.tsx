@@ -42,6 +42,13 @@ export default function ReservationDialog({
   tripType = 'Ida', 
   travelDate = new Date() 
 }: ReservationDialogProps) {
+  // Garantir que a data seja tratada corretamente (sem problemas de fuso horário)
+  const getCorrectDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [observations, setObservations] = useState("");
@@ -90,7 +97,7 @@ export default function ReservationDialog({
           route_id: route!.id,
           customer_name: name.trim(),
           customer_phone: cleanedPhone,
-          travel_date: format(travelDate, 'yyyy-MM-dd'),
+          travel_date: getCorrectDate(travelDate),
           trip_type: tripType,
           return_route_id: returnRoute?.id || null,
           observations: observations.trim() || null,
@@ -115,7 +122,7 @@ export default function ReservationDialog({
             route_id: returnRoute.id,
             customer_name: name.trim(),
             customer_phone: cleanedPhone,
-            travel_date: format(travelDate, 'yyyy-MM-dd'),
+            travel_date: getCorrectDate(travelDate),
             trip_type: 'Volta',
             observations: observations.trim() || null,
           });
@@ -179,7 +186,7 @@ export default function ReservationDialog({
             <div className="bg-secondary rounded-lg p-4 space-y-3">
               <div className="text-center">
                 <p className="text-sm text-muted-foreground mb-2">
-                  Data da viagem: {format(travelDate, "PPP", { locale: ptBR })}
+                  Data da viagem: {format(travelDate, "dd/MM/yyyy", { locale: ptBR })}
                 </p>
                 <div className="space-y-2">
                   <div>

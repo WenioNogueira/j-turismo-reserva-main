@@ -112,3 +112,94 @@ All colors MUST be HSL.
 }
 
 a[href*="lovable.dev"], iframe[src*="lovable.dev"], div[style*="Edit with Lovable"], .lovable-badge { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; position: absolute !important; z-index: -9999 !important; }
+
+/* Mobile-specific improvements */
+@layer utilities {
+  /* Improve touch targets for mobile */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent zoom on input focus */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+  
+  /* Improve button interactions on mobile */
+  button, .btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Better scrolling on mobile */
+  .scroll-smooth {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent horizontal scroll issues */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Improve modal/dialog positioning on mobile */
+  [role="dialog"] {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  /* Better form spacing on mobile */
+  .form-mobile {
+    padding: 1rem;
+  }
+  
+  /* Improve card interactions on mobile */
+  .card-mobile {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* Media queries for mobile-specific fixes */
+@media (max-width: 768px) {
+  /* Ensure proper viewport handling */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  /* Improve button sizing */
+  button {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+  
+  /* Better input styling */
+  input, textarea, select {
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+  
+  /* Improve popover positioning */
+  [data-radix-popper-content-wrapper] {
+    z-index: 9999;
+  }
+  
+  /* Better dialog sizing */
+  [role="dialog"] {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+/* Fix for iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  input, textarea, select {
+    font-size: 16px;
+  }
+}

@@ -207,12 +207,12 @@ const ReservationsPage = () => {
           <div style={{ display: 'none' }} className="flex items-center justify-center">
             <div className="bg-blue-600 rounded-full p-3 mr-3">
               <span className="text-2xl font-bold text-white">J</span>
-            </div>
+              </div>
             <h1 className="text-4xl font-bold text-red-600">Turismo</h1>
-          </div>
-        </div>
+              </div>
+            </div>
         <p className="text-xl text-gray-600">Reserve sua passagem com conforto e segurança</p>
-      </div>
+          </div>
 
       {/* Trip Type Selection */}
       <div className="transport-card mb-8">
@@ -235,42 +235,42 @@ const ReservationsPage = () => {
               {type}
             </button>
           ))}
-        </div>
-      </div>
+              </div>
+            </div>
 
       {/* City Selection */}
       <div className="transport-card mb-8">
         <h2 className="text-xl font-semibold mb-4">Selecione sua rota</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div>
+              <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Origem</label>
-            <select
+                <select
               value={selectedOrigin}
               onChange={(e) => handleOriginChange(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">Selecione a origem</option>
+                >
+                  <option value="">Selecione a origem</option>
               {getAvailableCities('origin').map(city => (
-                <option key={city} value={city}>{city}</option>
-              ))}
-            </select>
-          </div>
-          <div>
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Destino</label>
-            <select
+                <select
               value={selectedDestination}
               onChange={(e) => handleDestinationChange(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={!selectedOrigin}
-            >
-              <option value="">Selecione o destino</option>
+                >
+                  <option value="">Selecione o destino</option>
               {getAvailableCities('destination').map(city => (
-                <option key={city} value={city}>{city}</option>
-              ))}
-            </select>
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
       {/* Available Routes */}
       {selectedOrigin && selectedDestination && (
@@ -288,7 +288,7 @@ const ReservationsPage = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
                         <Bus className="h-6 w-6 text-blue-600" />
-                        <div>
+          <div>
                           <div className="flex items-center space-x-2">
                             <MapPin className="h-4 w-4 text-gray-500" />
                             <span className="font-medium">{route.origin} → {route.destination}</span>
@@ -312,7 +312,7 @@ const ReservationsPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
+          </div>
           )}
 
           {/* Return Routes */}
@@ -352,9 +352,9 @@ const ReservationsPage = () => {
                         {selectedReturnRoute?.id === route.id ? 'Selecionado' : 'Selecionar'}
                       </Button>
                     </div>
-                  </div>
+          </div>
                 ))}
-              </div>
+      </div>
             </div>
           )}
 

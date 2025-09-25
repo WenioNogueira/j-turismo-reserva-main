@@ -40,11 +40,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    return { error };
+    console.log('🔐 Tentando fazer login com:', email);
+    console.log('🔍 Supabase URL:', supabase.supabaseUrl);
+    console.log('🔑 Supabase Key (primeiros 20 chars):', supabase.supabaseKey.substring(0, 20) + '...');
+    
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      
+      if (error) {
+        console.error('❌ Erro no login:', error);
+        console.error('❌ Código do erro:', error.status);
+        console.error('❌ Mensagem:', error.message);
+      } else {
+        console.log('✅ Login realizado com sucesso!');
+        console.log('✅ Dados do usuário:', data.user);
+        console.log('✅ Sessão:', data.session);
+      }
+      
+      return { error };
+    } catch (err) {
+      console.error('❌ Erro crítico no login:', err);
+      return { error: { message: 'Erro de conexão com o servidor' } };
+    }
   };
 
   const signUp = async (email: string, password: string) => {

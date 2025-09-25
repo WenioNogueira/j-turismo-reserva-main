@@ -8,11 +8,11 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Auth() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin] = useState(true); // Sempre true - apenas login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signIn, signUp, user } = useAuth();
+  const { signIn, user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -36,9 +36,7 @@ export default function Auth() {
     setLoading(true);
 
     try {
-      const { error } = isLogin 
-        ? await signIn(email, password)
-        : await signUp(email, password);
+      const { error } = await signIn(email, password);
 
       if (error) {
         toast({
@@ -49,14 +47,7 @@ export default function Auth() {
         return;
       }
 
-      if (!isLogin) {
-        toast({
-          title: "Conta criada!",
-          description: "Verifique seu e-mail para confirmar a conta.",
-        });
-      } else {
-        navigate("/admin");
-      }
+      navigate("/admin");
     } catch (error) {
       toast({
         title: "Erro",
@@ -73,7 +64,7 @@ export default function Auth() {
       <Card className="w-full max-w-md shadow-card">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl text-primary">
-            {isLogin ? "Login Admin" : "Criar Conta Admin"}
+            Login Admin
           </CardTitle>
           <p className="text-muted-foreground">J Turismo - Painel Administrativo</p>
         </CardHeader>
@@ -108,19 +99,10 @@ export default function Auth() {
               className="w-full bg-transport-blue hover:bg-transport-blue/90"
               disabled={loading}
             >
-              {loading ? "Aguarde..." : isLogin ? "Entrar" : "Criar Conta"}
+              {loading ? "Aguarde..." : "Entrar"}
             </Button>
           </form>
           
-          <div className="mt-4 text-center">
-            <Button
-              variant="link"
-              onClick={() => setIsLogin(!isLogin)}
-              disabled={loading}
-            >
-              {isLogin ? "Criar nova conta admin" : "Já tenho conta"}
-            </Button>
-          </div>
           
           <div className="mt-4 text-center">
             <Button

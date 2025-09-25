@@ -12,6 +12,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { mobileDebug } from "@/utils/mobileDebug";
 
 interface Route {
   id: string;
@@ -59,6 +60,11 @@ export default function UserDashboard() {
 
   useEffect(() => {
     fetchRoutes();
+    
+    // Mobile debug
+    if (mobileDebug.isMobile()) {
+      mobileDebug.logDebugInfo();
+    }
     
     // Subscribe to real-time updates
     const channel = supabase
@@ -435,7 +441,7 @@ export default function UserDashboard() {
                     </Select>
                   </div>
 
-                  <div className="space-y-2">
+              <div className="space-y-2">
                     <label className="text-sm font-medium">Para</label>
                     <Select 
                       value={selectedDestination} 
@@ -444,15 +450,15 @@ export default function UserDashboard() {
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Escolha o destino" />
-                      </SelectTrigger>
-                      <SelectContent>
+                    </SelectTrigger>
+                    <SelectContent>
                         {availableDestinations.map((city) => (
                           <SelectItem key={city} value={city}>
                             {city}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   </div>
                 </div>
 
@@ -471,13 +477,13 @@ export default function UserDashboard() {
                               </div>
                             </div>
                           </div>
-                          <Button 
+                  <Button 
                             onClick={() => handleReserve(route)}
                             size="sm"
-                          >
-                            Reservar
-                          </Button>
-                        </div>
+                  >
+                    Reservar
+                  </Button>
+                </div>
                       ))}
                     </div>
                   </div>
@@ -497,24 +503,24 @@ export default function UserDashboard() {
                 {/* Ida */}
                 <div className="space-y-4">
                   <h4 className="text-md font-medium text-primary">Rota de Ida</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
                       <label className="text-sm font-medium">De</label>
                       <Select value={selectedOrigin} onValueChange={handleOriginChange}>
-                        <SelectTrigger>
+                    <SelectTrigger>
                           <SelectValue placeholder="Escolha a origem" />
-                        </SelectTrigger>
-                        <SelectContent>
+                    </SelectTrigger>
+                    <SelectContent>
                           {availableOrigins.map((city) => (
                             <SelectItem key={city} value={city}>
                               {city}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-                    <div className="space-y-2">
+                <div className="space-y-2">
                       <label className="text-sm font-medium">Para</label>
                       <Select 
                         value={selectedDestination} 
@@ -571,18 +577,18 @@ export default function UserDashboard() {
                     <div className="space-y-2">
                       <label className="text-sm font-medium">De</label>
                       <Select value={selectedReturnOrigin} onValueChange={handleReturnOriginChange}>
-                        <SelectTrigger>
+                    <SelectTrigger>
                           <SelectValue placeholder="Escolha a origem" />
-                        </SelectTrigger>
-                        <SelectContent>
+                    </SelectTrigger>
+                    <SelectContent>
                           {availableReturnOrigins.map((city) => (
                             <SelectItem key={city} value={city}>
                               {city}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Para</label>
@@ -624,6 +630,7 @@ export default function UserDashboard() {
                               onClick={() => setSelectedReturnRoute(route)}
                               size="sm"
                               variant={selectedReturnRoute?.id === route.id ? "default" : "outline"}
+                              className="touch-target min-h-[44px] min-w-[44px]"
                             >
                               {selectedReturnRoute?.id === route.id ? "Selecionada" : "Selecionar"}
                             </Button>
@@ -645,7 +652,7 @@ export default function UserDashboard() {
                   <Button 
                     onClick={handleRoundTripReserve}
                     disabled={!selectedRoute || !selectedReturnRoute}
-                    className="px-8"
+                    className="px-8 touch-target min-h-[44px] min-w-[120px]"
                   >
                     Reservar Ida e Volta
                   </Button>

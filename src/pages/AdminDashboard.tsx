@@ -59,7 +59,7 @@ export default function AdminDashboard() {
       `Viagem: ${reservation.routes.origin} → ${reservation.routes.destination}\n` +
       `Horário: ${reservation.routes.departure_time}\n` +
       `Tipo: ${reservation.trip_type}\n` +
-      `Data: ${format(new Date(reservation.travel_date), "dd/MM/yyyy")}\n` +
+      `Data: ${format(new Date(reservation.travel_date + 'T00:00:00'), "dd/MM/yyyy")}\n` +
       `Valor: R$ ${Number(reservation.routes.price).toFixed(2)}\n\n` +
       `Obrigado por escolher J Turismo! 🚌`;
     
@@ -287,7 +287,7 @@ export default function AdminDashboard() {
                         {/* Informações do Cliente */}
                         <div className="flex-1 space-y-2">
                           <div>
-                            <p className="font-semibold text-primary text-lg">{reservation.customer_name}</p>
+                          <p className="font-semibold text-primary text-lg">{reservation.customer_name}</p>
                             <p className="text-sm text-muted-foreground flex items-center gap-1">
                               <span className="text-green-600">●</span>
                               {reservation.customer_phone}
@@ -325,7 +325,7 @@ export default function AdminDashboard() {
                               Partida: {reservation.routes.departure_time}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1">
-                              Data da viagem: {format(new Date(reservation.travel_date), "dd/MM/yyyy")}
+                              Data da viagem: {format(new Date(reservation.travel_date + 'T00:00:00'), "dd/MM/yyyy")}
                             </p>
                           </div>
                         </div>
@@ -388,8 +388,8 @@ export default function AdminDashboard() {
                           >
                             {reservation.trip_type}
                           </Badge>
-                        </div>
-
+                      </div>
+                      
                         {/* Viagem Mobile */}
                         <div className="bg-background/50 rounded-lg p-3">
                           <p className="font-semibold text-primary text-center">
@@ -400,7 +400,7 @@ export default function AdminDashboard() {
                             {reservation.routes.departure_time}
                           </p>
                           <p className="text-xs text-muted-foreground text-center mt-1">
-                            {format(new Date(reservation.travel_date), "dd/MM/yyyy")}
+                            {format(new Date(reservation.travel_date + 'T00:00:00'), "dd/MM/yyyy")}
                           </p>
                         </div>
 
